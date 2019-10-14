@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "kattis-kitten"
+name = "kattiskitten"
 version = "0.1.0"
 description = "Kattis CLI - Easily download, test and submit kattis problems"
 authors = ["Felix Qvist <felix.qvist@gmail.com>"]
@@ -18,4 +18,4 @@ requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
 
 [tool.poetry.scripts]
-APPLICATION-NAME = 'entry:main'
+kk = 'kattiskitten:main'
