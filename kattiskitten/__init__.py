@@ -195,6 +195,7 @@ for i in range(n):
 @main.command()
 @click.argument('problem')
 def submit(problem):
+    """This command submits a problem to kattis"""
     f = f'./{problem}/main.py'
     cfg = get_config()
 
