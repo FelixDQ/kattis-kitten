@@ -1,7 +1,7 @@
 import subprocess
 
 kattis_name = "Python 3"
-file_extension = ".py"
+file_extension = "py"
 default_content = 'print("Hello world!")'
 emoji = "🐍"
 
