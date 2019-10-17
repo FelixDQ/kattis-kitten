@@ -21,15 +21,15 @@ def get_config(language):
 
 
 def determine_language(problem):
-    main = glob.glob(f"./{problem}/main.*")
+    solution = glob.glob(f"./{problem}/Solution.*")
 
-    if len(main) < 1:
-        raise ValueError("Couldn't find any program matching patten (main.*)")
-    if len(main) > 1:
+    if len(solution) < 1:
+        raise ValueError("Couldn't find any program matching patten (Solution.*)")
+    if len(solution) > 1:
         raise ValueError(
-            "Found more than one program matching patten (main.*). It currently only supports one")
+            "Found more than one program matching patten (Solution.*). It currently only supports one")
 
-    m = re.search(r".*(\..+?)$", main[0])
+    m = re.search(r".*(\..+?)$", solution[0])
 
     if m:
         extension = m.group(1)

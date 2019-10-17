@@ -81,8 +81,8 @@ def get(problem, language):
 
 
         # Create main.xx with template
-        if not os.path.exists(f'./{problem}/main.{language_config.file_extension}'):
-            open(f'./{problem}/main.{language_config.file_extension}', 'w').write(language_config.default_content)
+        if not os.path.exists(f'./{problem}/Solution.{language_config.file_extension}'):
+            open(f'./{problem}/Solution.{language_config.file_extension}', 'w').write(language_config.default_content)
 
 
 @main.command()
