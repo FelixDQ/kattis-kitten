@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kattiskitten"
-version = "0.1.0"
+version = "0.2.0"
 description = "Kattis CLI - Easily download, test and submit kattis problems"
 authors = ["Felix Qvist <felix.qvist@gmail.com>"]
 
