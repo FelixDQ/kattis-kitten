@@ -8,12 +8,13 @@ import glob
 import subprocess
 import colorful as cf
 import re
-from bs4 import BeautifulSoup
 import os
 import configparser
 import sys
 import webbrowser
 from pathlib import Path
+from kattiskitten.tester import test_problem
+from kattiskitten.scraper import get_problem_score
 
 __author__ = "Felix Qvist"
 
@@ -25,63 +26,6 @@ def main():
     Simple CLI for downloading and testing kattis problems
     """
     pass
-
-
-def test_problem(problem, log=True):
-    if log:
-        print(f"👷‍ Testing {problem}:\n")
-    inputs = glob.glob(f"./{problem}/*.in")
-
-    count = 0
-    for input in inputs:
-        count += 1
-        if log:
-            print(f"🔎 Test number {count}:")
-
-        input_file = open(input, "rb")
-        input_content = input_file.read()
-
-        output_string = None
-        try:
-            output = subprocess.check_output(
-                ['python3', f"./{problem}/main.py"], input=input_content)
-            output_string = output.decode("utf-8")
-        except subprocess.CalledProcessError as e:
-            output_string = e.output.decode("utf-8")
-
-        answer = input.replace('.in', '.ans')
-        answer_file = open(answer, "r")
-        answer_content = answer_file.read()
-
-        if output_string.replace("\r\n", "\n") != answer_content.replace("\r\n", "\n"):
-            if log:
-                print(cf.bold_red("❌ Failed..."))
-                print("__________INPUT____________")
-                print(input_content.decode('utf-8'))
-                print("__________INPUT____________")
-                print(cf.red("__________OUTPUT___________"))
-                print(cf.red(output_string))
-                print(cf.red("__________OUTPUT___________"))
-                print("__________EXPECTED_________")
-                print(answer_content)
-                print("__________EXPECTED_________")
-
-            return False
-        elif log:
-            print(cf.bold_green("✅ Test succesful!\n"))
-
-
-
-    return True
-
-
-def get_problem_score(problem):
-    res = requests.get(f"https://open.kattis.com/problems/{problem}")
-    if res.status_code == 200:
-        soup = BeautifulSoup(res.text, features="html.parser")
-        difficulity_title = soup.find('strong', text="Difficulty:  ")
-        return float(difficulity_title.find_next_sibling("span").text)
-    return 0
 
 def get_url(cfg, option, default):
     if cfg.has_option('kattis', option):
@@ -171,7 +115,7 @@ def get(problem):
         f"https://open.kattis.com/problems/{problem}/file/statement/samples.zip")
 
     if res.status_code == 404:
-        print(f"Couldn't find problem '{problem}'. Maybe you typed it wrong?")
+        print(f"Couldn't find problem '{problem}'. Maybe you typed it wrong? Or no test files exist")
     else:
         print("Downloading samples")
         tmp_file = tempfile.NamedTemporaryFile(delete=False)
