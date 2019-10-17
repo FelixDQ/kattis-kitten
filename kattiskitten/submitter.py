@@ -59,12 +59,8 @@ def open_submission(submit_response, cfg):
             
 
 def submit_problem(problem, sub_files, open=True):
-    
     cfg = get_config()
-
     login_reply = login_from_config(cfg)
-
-
 
     data = {'submit': 'true',
             'submit_ctr': 2,
@@ -73,7 +69,6 @@ def submit_problem(problem, sub_files, open=True):
             'problem': problem,
             'tag': '',
             'script': 'true'}
-
 
     result = requests.post(get_url(cfg, 'submissionurl', 'submit'), data=data, files=sub_files, cookies=login_reply.cookies, headers=_HEADERS)
 

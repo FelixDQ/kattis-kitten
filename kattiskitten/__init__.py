@@ -14,6 +14,7 @@ import webbrowser
 from kattiskitten.tester import test_problem
 from kattiskitten.scraper import get_problem_score
 from kattiskitten.submitter import submit_problem
+from kattiskitten.languages import languages
 
 __author__ = "Felix Qvist"
 
@@ -56,12 +57,15 @@ def test(problem):
 
 
 @main.command()
+@click.option("--language", default="python3")
 @click.argument('problem')
-def get(problem):
+def get(problem, language):
     """This command downloads a kattis problem and test files"""
     res = requests.get(
         f"https://open.kattis.com/problems/{problem}/file/statement/samples.zip")
 
+    language_config = languages.get_config(language)
+    
     if res.status_code == 404:
         print(f"Couldn't find problem '{problem}'. Maybe you typed it wrong? Or no test files exist")
     else:
@@ -75,13 +79,10 @@ def get(problem):
         tmp_file.close()
         os.unlink(tmp_file.name)
 
-        # Create main.py with template
-        if not os.path.exists(f'./{problem}/main.py'):
-            open(f'./{problem}/main.py', 'w').write("""n = int(input())
 
-for i in range(n):
-    print(i)
-    """)
+        # Create main.xx with template
+        if not os.path.exists(f'./{problem}/main.{language_config.file_extension}'):
+            open(f'./{problem}/main.{language_config.file_extension}', 'w').write(language_config.default_content)
 
 
 @main.command()

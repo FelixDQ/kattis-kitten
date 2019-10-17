@@ -1,10 +1,15 @@
 import glob
 import subprocess
 import colorful as cf
+from kattiskitten.languages import languages
 
 def test_problem(problem, log=True):
-    if log:
-        print(f"👷‍ Testing {problem}:\n")
+    if log: print(f"👷‍ Testing {problem}...")
+
+    lang = languages.determine_language(problem)
+    lang_config = languages.get_config(lang)
+    if log: print(f"👷‍ Language = {lang_config.kattis_name} {lang_config.emoji}\n")
+
     inputs = glob.glob(f"./{problem}/*.in")
 
     count = 0
@@ -16,13 +21,8 @@ def test_problem(problem, log=True):
         input_file = open(input, "rb")
         input_content = input_file.read()
 
-        output_string = None
-        try:
-            output = subprocess.check_output(
-                ['python3', f"./{problem}/main.py"], input=input_content)
-            output_string = output.decode("utf-8")
-        except subprocess.CalledProcessError as e:
-            output_string = e.output.decode("utf-8")
+        program_path = f"./{problem}/main{lang_config.file_extension}"
+        output_string = lang_config.run_program(program_path, input_content)
 
         answer = input.replace('.in', '.ans')
         answer_file = open(answer, "r")
