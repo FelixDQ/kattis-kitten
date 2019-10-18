@@ -26,6 +26,14 @@ def main():
     pass
 
 @main.command()
+def problems():
+    """
+    Simply opens https://open.kattis.com/problems in your webbrowser
+    """
+    webbrowser.open("https://open.kattis.com/problems")
+    
+
+@main.command()
 @click.argument('problem')
 def test(problem):
     """This tests a kattis problem using provided test problems"""
