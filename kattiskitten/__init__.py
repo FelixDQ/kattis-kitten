@@ -97,7 +97,7 @@ def get(problem, language):
 @click.argument('problem')
 def submit(problem):
     """This command submits a problem to kattis"""
-    f = f'./{problem}/main.py'
+    f = f'./{problem}/solution.py'
 
     sub_files = []
     with open(f) as sub_file:

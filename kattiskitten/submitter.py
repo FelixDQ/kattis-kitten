@@ -65,7 +65,7 @@ def submit_problem(problem, sub_files, open=True):
     data = {'submit': 'true',
             'submit_ctr': 2,
             'language': 'Python 3',
-            'mainclass': 'main.py',
+            'mainclass': 'solution.py',
             'problem': problem,
             'tag': '',
             'script': 'true'}
