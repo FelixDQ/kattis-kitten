@@ -21,7 +21,7 @@ def test_problem(problem, log=True):
         input_file = open(input, "rb")
         input_content = input_file.read()
 
-        program_path = f"./{problem}/Solution.{lang_config.file_extension}"
+        program_path = f"./{problem}/solution.{lang_config.file_extension}"
         output_string = lang_config.run_program(program_path, input_content)
 
         answer = input.replace('.in', '.ans')
