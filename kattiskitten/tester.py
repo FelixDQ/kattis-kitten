@@ -13,6 +13,7 @@ def test_problem(problem, log=True):
     inputs = glob.glob(f"./{problem}/*.in")
 
     count = 0
+    failed = False
     for input in inputs:
         count += 1
         if log:
@@ -41,10 +42,10 @@ def test_problem(problem, log=True):
                 print(answer_content)
                 print("__________EXPECTED_________")
 
-            return False
+            failed = True
         elif log:
             print(cf.bold_green("✅ Test succesful!\n"))
 
 
 
-    return True
+    return not failed
