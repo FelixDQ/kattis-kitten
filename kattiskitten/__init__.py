@@ -14,7 +14,7 @@ import webbrowser
 from kattiskitten.tester import test_problem
 from kattiskitten.scraper import get_problem_score
 from kattiskitten.submitter import submit_problem
-from kattiskitten.languages import languages
+import kattiskitten.language_detector as languages
 
 __author__ = "Felix Qvist"
 

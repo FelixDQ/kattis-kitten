@@ -1,7 +1,7 @@
 import glob
 import re
-import kattiskitten.languages.python3.config as python3_config
-import kattiskitten.languages.java.config as java_config
+import kattiskitten.languages.python3 as python3_config
+import kattiskitten.languages.java as java_config
 
 SUPPORTED_LANGUAGES = ["python3", "java"]
 

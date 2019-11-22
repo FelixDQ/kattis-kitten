@@ -1,7 +1,7 @@
 import glob
 import subprocess
 import colorful as cf
-from kattiskitten.languages import languages
+import kattiskitten.language_detector as languages
 
 def test_problem(problem, log=True):
     if log: print(f"👷‍ Testing {problem}...")
