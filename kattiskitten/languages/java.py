@@ -12,6 +12,7 @@ default_content = """class Solution
     } 
 }
 """
+main_class = "Solution"
 
 def run_program(file, input_content):
     # Make temporary path

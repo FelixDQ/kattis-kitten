@@ -4,6 +4,7 @@ kattis_name = "Python 3"
 file_extension = "py"
 default_content = 'print("Hello world!")'
 emoji = "🐍"
+main_class = "solution.py"
 
 def run_program(file, input_content):
     try:

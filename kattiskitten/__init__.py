@@ -97,7 +97,9 @@ def get(problem, language):
 @click.argument('problem')
 def submit(problem):
     """This command submits a problem to kattis"""
-    f = f'./{problem}/solution.py'
+    lang = language_detector.determine_language(problem)
+    lang_config = language_detector.get_config(lang)
+    f = f'./{problem}/solution.{lang_config.file_extension}'
 
     sub_files = []
     with open(f) as sub_file:

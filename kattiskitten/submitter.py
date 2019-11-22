@@ -5,6 +5,7 @@ from pathlib import Path
 import re
 import webbrowser
 import sys
+import kattiskitten.language_detector as language_detector
 
 _HEADERS = {'User-Agent': 'kattis-cli-submit'}
 
@@ -59,15 +60,17 @@ def open_submission(submit_response, cfg):
             
 
 def submit_problem(problem, sub_files, open=True):
+    lang = language_detector.determine_language(problem)
+    lang_config = language_detector.get_config(lang)
+
     cfg = get_config()
     login_reply = login_from_config(cfg)
-
     data = {'submit': 'true',
             'submit_ctr': 2,
-            'language': 'Python 3',
-            'mainclass': 'solution.py',
+            'language': lang_config.kattis_name,
+            'mainclass': lang_config.main_class,
             'problem': problem,
-            'tag': '',
+            'tag': 'Submitted with kattis kitten 🦄',
             'script': 'true'}
 
     result = requests.post(get_url(cfg, 'submissionurl', 'submit'), data=data, files=sub_files, cookies=login_reply.cookies, headers=_HEADERS)

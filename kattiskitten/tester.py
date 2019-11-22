@@ -1,13 +1,13 @@
 import glob
 import subprocess
 import colorful as cf
-import kattiskitten.language_detector as languages
+import kattiskitten.language_detector as language_detector
 
 def test_problem(problem, log=True):
     if log: print(f"👷‍ Testing {problem}...")
 
-    lang = languages.determine_language(problem)
-    lang_config = languages.get_config(lang)
+    lang = language_detector.determine_language(problem)
+    lang_config = language_detector.get_config(lang)
     if log: print(f"👷‍ Language = {lang_config.kattis_name} {lang_config.emoji}\n")
 
     inputs = glob.glob(f"./{problem}/*.in")
