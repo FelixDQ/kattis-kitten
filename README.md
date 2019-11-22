@@ -18,6 +18,7 @@ Installation (requires python >= 3.6):
 ```
 pip3 install kattiskitten
 ```
+[![PyPI version](https://badge.fury.io/py/kattiskitten.svg)](https://badge.fury.io/py/kattiskitten)
 # Commands
 Download test files.
 ```
