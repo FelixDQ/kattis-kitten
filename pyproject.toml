@@ -4,6 +4,10 @@ version = "0.3.2"
 description = "Kattis CLI - Easily download, test and submit kattis problems"
 authors = ["Felix Qvist <felix.qvist@gmail.com>"]
 
+readme = 'README.md'
+repository = "https://github.com/FelixDQ/kattis-kitten"
+homepage = "https://github.com/FelixDQ/kattis-kitten"
+
 [tool.poetry.dependencies]
 python = "^3.6"
 beautifulsoup4 = "4.8.1"
