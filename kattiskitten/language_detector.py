@@ -1,23 +1,24 @@
 import glob
 import re
-import kattiskitten.languages.python3 as python3_config
-import kattiskitten.languages.java as java_config
+import pkgutil
+import kattiskitten.languages as languages
 
-SUPPORTED_LANGUAGES = ["python3", "java"]
+SUPPORTED_LANGUAGES = []
+LANGUAGE_EXTENSIONS = {}
+CONFIGS = {}
 
-LANGUAGE_EXTENSIONS = {
-    ".py": "python3",
-    ".java": "java",
-}
+for importer, language, ispkg in pkgutil.iter_modules(languages.__path__):
+    SUPPORTED_LANGUAGES.append(language)
+    config = importer.find_module(language).load_module(language)
 
+    LANGUAGE_EXTENSIONS[config.file_extension] = language
+    CONFIGS[language] = config
 
 def get_config(language):
-    if language == "python3":
-        return python3_config
-    if language == "java":
-        return java_config
+    if language not in CONFIGS:
+        raise ValueError(f"Language not supported. Supported languages are: {', '.join(SUPPORTED_LANGUAGES)}")
+    return CONFIGS[language]
 
-    raise ValueError(f"Language not supported. Supported languages are: {', '.join(SUPPORTED_LANGUAGES)}")
 
 
 def determine_language(problem):
@@ -29,7 +30,7 @@ def determine_language(problem):
         raise ValueError(
             "Found more than one program matching patten (solution.*). It currently only supports one")
 
-    m = re.search(r".*(\..+?)$", solution[0])
+    m = re.search(r".*\.(.+?)$", solution[0])
 
     if m:
         extension = m.group(1)

@@ -14,7 +14,7 @@ import webbrowser
 from kattiskitten.tester import test_problem
 from kattiskitten.scraper import get_problem_score
 from kattiskitten.submitter import submit_problem
-import kattiskitten.language_detector as languages
+import kattiskitten.language_detector
 
 __author__ = "Felix Qvist"
 
@@ -72,7 +72,7 @@ def get(problem, language):
     res = requests.get(
         f"https://open.kattis.com/problems/{problem}/file/statement/samples.zip")
 
-    language_config = languages.get_config(language)
+    language_config = language_detector.get_config(language)
     
     if res.status_code == 404:
         print(f"Couldn't find problem '{problem}'. Maybe you typed it wrong? Or no test files exist")
