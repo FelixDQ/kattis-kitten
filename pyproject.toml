@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "kattiskitten"
-version = "0.4.0"
+version = "0.4.1"
 description = "Kattis CLI - Easily download, test and submit kattis problems"
 authors = ["Felix Qvist <felix.qvist@gmail.com>"]
 
+license= 'GPL-3.0-only'
 readme = 'README.md'
 repository = "https://github.com/FelixDQ/kattis-kitten"
 homepage = "https://github.com/FelixDQ/kattis-kitten"
