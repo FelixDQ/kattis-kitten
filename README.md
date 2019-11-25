@@ -1,4 +1,8 @@
 # Kattis kitten
+![Repo size](https://img.shields.io/github/repo-size/FelixDQ/kattis-kitten)
+[![PyPI version](https://badge.fury.io/py/kattiskitten.svg)](https://pypi.org/project/kattiskitten/)
+![License](https://img.shields.io/pypi/l/kattiskitten)
+
 Kattis CLI - Easily download, test and submit kattis problems
 ```
 Usage: kk [OPTIONS] COMMAND [ARGS]...
@@ -18,7 +22,7 @@ Installation (requires python >= 3.6):
 ```
 pip3 install kattiskitten
 ```
-[![PyPI version](https://badge.fury.io/py/kattiskitten.svg)](https://pypi.org/project/kattiskitten/)
+
 # Commands
 Download test files.
 ```
