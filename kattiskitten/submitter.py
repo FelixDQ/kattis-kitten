@@ -76,6 +76,10 @@ def submit_problem(problem, sub_files, open=True):
     result = requests.post(get_url(cfg, 'submissionurl', 'submit'), data=data, files=sub_files, cookies=login_reply.cookies, headers=_HEADERS)
 
     plain_result = result.content.decode('utf-8').replace('<br />', '\n')
-    print(plain_result)
-    
-    if open: open_submission(plain_result, cfg)
+    if len(plain_result) < 1000:
+        print(plain_result)
+        if open: open_submission(plain_result, cfg)
+    else:
+        print("Authentication failed :/")
+        print("Download your configuration file from here: https://open.kattis.com/download/kattisrc")
+        print(f"Save it as .kattisrc in your home folder: {os.path.join(Path.home(), '.kattisrc')}")
