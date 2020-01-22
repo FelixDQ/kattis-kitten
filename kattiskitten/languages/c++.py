@@ -25,5 +25,3 @@ def run_program(file, input_content):
         return output.decode("utf-8")
     except subprocess.CalledProcessError as e:
         return e.output.decode("utf-8") # We still want the output when programs exits with an error
-
-    print(f"saved to {dirpath}")

@@ -79,4 +79,6 @@ The other commands will auto detect which language you have chosen.
 # Supported languages
 * Python3
 * Java
+* C++
+* C
 * Contribute by adding [more languages](https://github.com/FelixDQ/kattis-kitten/tree/master/kattiskitten/languages)! :-) 
