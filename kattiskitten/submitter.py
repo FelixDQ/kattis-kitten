@@ -11,7 +11,7 @@ import kattiskitten.config as cfg
 _HEADERS = {'User-Agent': 'kattis-cli-submit'}
 
 def get_active_org():
-    return cfg.get('active_org')
+    return cfg.get('active_org') or 'open.kattis.com'
 
 def get_url(path):
     return 'https://%s/%s' % (get_active_org(), path)

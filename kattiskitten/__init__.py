@@ -24,6 +24,7 @@ def main():
     """
     Simple CLI for downloading and testing kattis problems
     """
+    print(f"Using {cfg.get('active_org') or 'open.kattis.com'}")
     pass
 
 @main.command()
