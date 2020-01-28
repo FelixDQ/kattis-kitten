@@ -13,7 +13,6 @@ import sys
 import webbrowser
 import configparser
 from kattiskitten.tester import test_problem
-from kattiskitten.scraper import get_problem_score
 from kattiskitten.submitter import submit_problem
 import kattiskitten.language_detector
 import kattiskitten.config as cfg
@@ -28,14 +27,6 @@ def main():
     pass
 
 @main.command()
-def problems():
-    """
-    Simply opens https://open.kattis.com/problems in your webbrowser
-    """
-    webbrowser.open("https://open.kattis.com/problems")
-    
-
-@main.command()
 @click.argument('problem')
 def test(problem):
     """This tests a kattis problem using provided test problems"""
@@ -48,7 +39,6 @@ def test(problem):
         for p in problems:
             p = re.sub(r'[^\w]', '', p)
             res = test_problem(p, False)
-            score = get_problem_score(p)
             total_score += score
             if res:
                 print(f"✅ {p}")
@@ -58,12 +48,11 @@ def test(problem):
                 print(f"❌ {p}")
 
         print(f"\n Completed {completed_count}/{len(problems)}")
-        print(f"\n Earned {round(earned_score)}/{round(total_score)} points")
 
     else:
         res = test_problem(problem)
         if res:
-            print(f"Earned {get_problem_score(problem)} points 🎉")
+            print(f"Woop woop 🎉")
 
 
 @main.command()
@@ -71,8 +60,9 @@ def test(problem):
 @click.argument('problem')
 def get(problem, language):
     """This command downloads a kattis problem and test files"""
+    hostname = cfg.get('active_org') if cfg.get('active_org') is not None else 'open.kattis.com'
     res = requests.get(
-        f"https://open.kattis.com/problems/{problem}/file/statement/samples.zip")
+        f"https://{hostname}/problems/{problem}/file/statement/samples.zip")
 
     language_config = language_detector.get_config(language)
     

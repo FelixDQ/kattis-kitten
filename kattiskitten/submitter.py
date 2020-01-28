@@ -60,5 +60,4 @@ def submit_problem(problem, sub_files, open=True):
         if open: open_submission(plain_result)
     else:
         print("Authentication failed :/")
-        print("Download your configuration file from here: https://open.kattis.com/download/kattisrc")
-        print(f"Save it as .kattisrc in your home folder: {os.path.join(Path.home(), '.kattisrc')}")
+        print("Reauthenticate with \"kk org add\"")
