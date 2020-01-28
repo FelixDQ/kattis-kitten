@@ -11,10 +11,12 @@ import re
 import os
 import sys
 import webbrowser
+import configparser
 from kattiskitten.tester import test_problem
 from kattiskitten.scraper import get_problem_score
 from kattiskitten.submitter import submit_problem
 import kattiskitten.language_detector
+import kattiskitten.config as cfg
 
 __author__ = "Felix Qvist"
 
@@ -107,6 +109,47 @@ def submit(problem):
             f), sub_file.read(), 'application/octet-stream')))
 
     submit_problem(problem, sub_files)
+
+@main.group()
+def org():
+    """Change organization settings"""
+    pass
+
+@org.command()
+@click.argument('organization', required=False)
+def current(organization):
+    """Gets or sets the organization"""
+    if not organization:
+        print("Current org is", cfg.get('org') or 'open.kattis.com')
+    elif cfg.sectionExists(organization) or organization == 'open.kattis.com':
+        cfg.set('org', organization)
+        print(f"Changed active org to {organization}")
+    else:
+        print("You haven't added this organization. Add it with\nkk org add")
+
+@org.command()
+def add():
+    """Add a new organization"""
+    hostname = click.prompt('Organization url', type=str, default="open.kattis.com")
+    res = requests.get(f"https://{hostname}")
+    if res.status_code == 404:
+        print(f'Couldn\'t find org ({res.request.url}). Did you spell it correctly?')
+        return
+    
+    print("\n\nNow you need to download the configuration file from the following url:")
+    print(f"https://{hostname}/download/kattisrc\n\n")
+
+    username = click.prompt('Kattis username (copy from .kattisrc)', type=str)
+
+    res = requests.get(f"https://{hostname}/users/{username}")
+    if res.status_code == 404:
+        print(f'Couldn\'t find user ({res.request.url}). Did you spell it correctly?')
+        return
+
+    token = click.prompt('Kattis token (copy from .kattisrc)', type=str)
+
+    cfg.set('username', username, hostname)
+    cfg.set('token', token, hostname)
 
 if __name__ == "__main__":
     main()
