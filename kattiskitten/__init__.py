@@ -120,9 +120,9 @@ def org():
 def current(organization):
     """Gets or sets the organization"""
     if not organization:
-        print("Current org is", cfg.get('org') or 'open.kattis.com')
+        print("Current org is", cfg.get('active_org') or 'open.kattis.com')
     elif cfg.sectionExists(organization) or organization == 'open.kattis.com':
-        cfg.set('org', organization)
+        cfg.set('active_org', organization)
         print(f"Changed active org to {organization}")
     else:
         print("You haven't added this organization. Add it with\nkk org add")
