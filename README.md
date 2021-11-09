@@ -1,8 +1,10 @@
 # Kattis kitten
+
 ![Repo size](https://img.shields.io/github/repo-size/FelixDQ/kattis-kitten)
 [![PyPI version](https://img.shields.io/pypi/v/kattiskitten)](https://pypi.org/project/kattiskitten/)
 
 Kattis CLI - Easily download, test and submit kattis problems
+
 ```
 Usage: kk [OPTIONS] COMMAND [ARGS]...
 
@@ -17,13 +19,17 @@ Commands:
   submit    This command submits a problem to kattis
   test      This tests a kattis problem using provided test problems
 ```
+
 Installation (requires python >= 3.6):
+
 ```
 pip3 install kattiskitten
 ```
 
 # Commands
+
 Download test files.
+
 ```
 > kk get rationalsequence
 Downloading samples
@@ -31,6 +37,7 @@ Samples downloaded to './rationalsequence'
 ```
 
 Test the problem
+
 ```
 > kk test rationalsequence
 👷‍ Testing rationalsequence...
@@ -62,23 +69,30 @@ __________EXPECTED_________
 ```
 
 Submit solution to kattis
+
 ```
 > kk submit rationalsequence
 Submission received. Submission ID: 5030066.
 * Opens web browser on submission page *
 ```
+
 # Choose language
+
 The default language is python3. To change language you can use the `--language` flag on the get command.
+
 ```
 > kk get rationalsequence --language java
 Downloading samples
 Samples downloaded to './rationalsequence'
 ```
+
 The other commands will auto detect which language you have chosen.
 
 # Supported languages
-* Python3
-* Java
-* C++
-* C
-* Contribute by adding [more languages](https://github.com/FelixDQ/kattis-kitten/tree/master/kattiskitten/languages)! :-) 
+
+- Python3
+- Java
+- C++
+- C
+- Rust
+- Contribute by adding [more languages](https://github.com/FelixDQ/kattis-kitten/tree/master/kattiskitten/languages)! :-)
