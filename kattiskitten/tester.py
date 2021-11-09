@@ -2,6 +2,7 @@ import glob
 import subprocess
 import colorful as cf
 import kattiskitten.language_detector as language_detector
+import time
 
 def test_problem(problem, log=True):
     if log: print(f"👷‍ Testing {problem}...")
@@ -23,9 +24,10 @@ def test_problem(problem, log=True):
         input_content = input_file.read()
 
         program_path = f"./{problem}/solution.{lang_config.file_extension}"
+        start = time.time()
         output_string = lang_config.run_program(program_path, input_content)
-
-        answer = input.replace('.in', '.ans')
+        end = time.time()
+        answer = input[:-3] + ".ans"
         answer_file = open(answer, "r")
         answer_content = answer_file.read()
 
@@ -44,7 +46,7 @@ def test_problem(problem, log=True):
 
             failed = True
         elif log:
-            print(cf.bold_green("✅ Test succesful!\n"))
+            print(cf.bold_green(f"✅ Test succesful! (completed in {end-start} seconds)\n"))
 
 
 
