@@ -92,7 +92,13 @@ impl<R: io::BufRead> Scanner<R> {
 
 additional_files_that_shouldnt_be_submitted = {
     "Cargo.toml": """[package]
-name = "kattis-problem" """
+name = "kattis-problem"
+version = "0.1.0"
+
+[lib]
+name = "solution"
+path = "solution.rs"
+"""
 }
 
 

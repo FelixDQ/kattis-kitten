@@ -2,7 +2,7 @@
 authors = ["Felix Qvist <felix@qvist.dev>"]
 description = "Kattis CLI - Easily download, test and submit kattis problems"
 name = "kattiskitten"
-version = "0.13.0"
+version = "0.14.0"
 
 homepage = "https://github.com/FelixDQ/kattis-kitten"
 license = 'MIT'
