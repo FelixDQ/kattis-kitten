@@ -15,7 +15,7 @@ main_class = "solution.rs"
 def run_program(file, input_content):
     # Make temporary path
     dirpath = tempfile.mkdtemp()
-    subprocess.call(["rustc", file, "-o", dirpath + "/main"])
+    subprocess.call(["rustc", file, "-o", dirpath + "/main", "-W", "warnings"])
 
     try:
         output = subprocess.check_output([dirpath + "/main"], input=input_content)
