@@ -106,7 +106,7 @@ def get(problem, language):
 
         if "additional_files_that_shouldnt_be_submitted" in dir(language_config):
             for file in language_config.additional_files_that_shouldnt_be_submitted:
-                if os.path.exists(f"./{problem}/{file}"):
+                if not os.path.exists(f"./{problem}/{file}"):
                     os.remove(f"./{problem}/{file}")
 
 
